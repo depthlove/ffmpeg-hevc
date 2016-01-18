@@ -237,9 +237,8 @@
 .endm
 
 .macro  tr32_begin
-        smull       v5.4S,  v16.4H, v0.H[0]
-        mov         v6.16B, v5.16B
-        mov         v7.16B, v5.16B
+        smull       v6.4S,  v16.4H, v0.H[0]
+        smull       v7.4S,  v16.4H, v0.H[0]
         smull       v8.4S,  v16.4H, v0.H[2]
         smull       v9.4S,  v16.4H, v0.H[3]
         smlal       v6.4S,  v17.4H, v0.H[0]
@@ -258,9 +257,8 @@
         smlal       v7.4S,  v20.4H, v1.H[5]
         smlsl       v8.4S,  v20.4H, v1.H[1]
         smlsl       v9.4S,  v20.4H, v0.H[0]
-        sshll       v5.4S,  v21.4H, #2
-        sub         v7.4S,  v7.4S,  v5.4S
         smlal       v6.4S,  v21.4H, v0.H[5]
+        smlsl       v7.4S,  v21.4H, v1.H[7]
         smlsl       v8.4S,  v21.4H, v0.H[4]
         smlsl       v9.4S,  v21.4H, v0.H[6]
         smlal       v6.4S,  v22.4H, v0.H[6]
@@ -275,20 +273,18 @@
         smlsl       v7.4S,  v24.4H, v0.H[6]
         smlsl       v8.4S,  v24.4H, v1.H[2]
         smlal       v9.4S,  v24.4H, v0.H[4]
-        sshll       v5.4S,  v25.4H, #2
-        sub         v8.4S,  v8.4S,  v5.4S
         smlal       v6.4S,  v25.4H, v1.H[1]
         smlsl       v7.4S,  v25.4H, v0.H[3]
+        smlsl       v8.4S,  v25.4H, v1.H[7]
         smlal       v9.4S,  v25.4H, v0.H[2]
         smlal       v6.4S,  v26.4H, v1.H[2]
         smlsl       v7.4S,  v26.4H, v0.H[0]
         smlal       v8.4S,  v26.4H, v1.H[3]
         smlal       v9.4S,  v26.4H, v1.H[1]
-        sshll       v5.4S,  v27.4H, #2
-        sub         v9.4S,  v9.4S,  v5.4S
         smlal       v6.4S,  v27.4H, v1.H[3]
         smlsl       v7.4S,  v27.4H, v0.H[2]
         smlal       v8.4S,  v27.4H, v0.H[6]
+        smlsl       v9.4S,  v27.4H, v1.H[7]
         smlal       v6.4S,  v28.4H, v1.H[4]
         smlsl       v7.4S,  v28.4H, v0.H[5]
         smlal       v8.4S,  v28.4H, v0.H[0]
@@ -301,20 +297,16 @@
         smlsl       v7.4S,  v30.4H, v1.H[3]
         smlal       v8.4S,  v30.4H, v1.H[0]
         smlsl       v9.4S,  v30.4H, v0.H[5]
-        sshll       v5.4S,  v31.4H, #2
-        add         v6.4S,  v6.4S,  v5.4S
+        smlal       v6.4S,  v31.4H, v1.H[7]
         smlsl       v7.4S,  v31.4H, v1.H[6]
         smlal       v8.4S,  v31.4H, v1.H[5]
         smlsl       v9.4S,  v31.4H, v1.H[0]
-        st1         {v6.2D - v9.2D}, [x6], #64
-
         smull       v2.4S,  v16.4H, v0.H[4]
         smull       v3.4S,  v16.4H, v0.H[5]
         smull       v4.4S,  v16.4H, v0.H[6]
         smull       v5.4S,  v16.4H, v0.H[7]
-        sshll       v6.4S,  v17.4H, #2
-        sub         v3.4S,  v3.4S,  v6.4S
         smlal       v2.4S,  v17.4H, v1.H[5]
+        smlsl       v3.4S,  v17.4H, v1.H[7]
         smlsl       v4.4S,  v17.4H, v1.H[4]
         smlsl       v5.4S,  v17.4H, v1.H[1]
         smlsl       v2.4S,  v18.4H, v1.H[1]
@@ -337,11 +329,10 @@
         smlal       v3.4S,  v22.4H, v0.H[7]
         smlsl       v4.4S,  v22.4H, v1.H[3]
         smlsl       v5.4S,  v22.4H, v0.H[0]
-        sshll       v6.4S,  v23.4H, #2
-        add         v5.4S,  v5.4S,  v6.4S
         smlal       v2.4S,  v23.4H, v0.H[3]
         smlsl       v3.4S,  v23.4H, v1.H[5]
         smlsl       v4.4S,  v23.4H, v0.H[0]
+        smlal       v5.4S,  v23.4H, v1.H[7]
         smlal       v2.4S,  v24.4H, v1.H[4]
         smlsl       v3.4S,  v24.4H, v0.H[2]
         smlsl       v4.4S,  v24.4H, v1.H[6]
@@ -358,15 +349,13 @@
         smlal       v3.4S,  v27.4H, v0.H[0]
         smlsl       v4.4S,  v27.4H, v1.H[2]
         smlsl       v5.4S,  v27.4H, v1.H[4]
-        sshll       v6.4S,  v28.4H, #2
-        add         v2.4S,  v2.4S,  v6.4S
+        smlal       v2.4S,  v28.4H, v1.H[7]
         smlal       v3.4S,  v28.4H, v1.H[1]
         smlsl       v4.4S,  v28.4H, v0.H[2]
         smlal       v5.4S,  v28.4H, v0.H[4]
-        sshll       v6.4S,  v29.4H, #2
-        sub         v4.4S,  v4.4S,  v6.4S
         smlal       v2.4S,  v29.4H, v0.H[6]
         smlsl       v3.4S,  v29.4H, v1.H[3]
+        smlsl       v4.4S,  v29.4H, v1.H[7]
         smlal       v5.4S,  v29.4H, v1.H[2]
         smlal       v2.4S,  v30.4H, v0.H[2]
         smlsl       v3.4S,  v30.4H, v0.H[0]
@@ -376,6 +365,7 @@
         smlsl       v3.4S,  v31.4H, v1.H[2]
         smlal       v4.4S,  v31.4H, v1.H[1]
         smlsl       v5.4S,  v31.4H, v1.H[0]
+        st1         {v6.2D - v9.2D}, [x6], #64
         st1         {v2.2D - v5.2D}, [x6], #64
 
         smull       v6.4S,  v16.4H, v1.H[0]
@@ -386,16 +376,14 @@
         smlsl       v7.4S,  v17.4H, v0.H[3]
         smlsl       v8.4S,  v17.4H, v0.H[0]
         smlsl       v9.4S,  v17.4H, v0.H[2]
-        sshll       v5.4S,  v18.4H, #2
-        sub         v7.4S,  v7.4S,  v5.4S
         smlsl       v6.4S,  v18.4H, v1.H[2]
+        smlsl       v7.4S,  v18.4H, v1.H[7]
         smlal       v8.4S,  v18.4H, v1.H[3]
         smlal       v9.4S,  v18.4H, v0.H[6]
-        sshll       v5.4S,  v19.4H, #2
-        sub         v9.4S,  v9.4S,  v5.4S
         smlal       v6.4S,  v19.4H, v0.H[4]
         smlal       v7.4S,  v19.4H, v0.H[2]
         smlal       v8.4S,  v19.4H, v1.H[1]
+        smlsl       v9.4S,  v19.4H, v1.H[7]
         smlal       v6.4S,  v20.4H, v1.H[4]
         smlsl       v7.4S,  v20.4H, v1.H[2]
         smlsl       v8.4S,  v20.4H, v0.H[0]
@@ -412,8 +400,7 @@
         smlal       v7.4S,  v23.4H, v1.H[6]
         smlsl       v8.4S,  v23.4H, v0.H[2]
         smlal       v9.4S,  v23.4H, v1.H[4]
-        sshll       v5.4S,  v24.4H, #2
-        sub         v6.4S,  v6.4S,  v5.4S
+        smlsl       v6.4S,  v24.4H, v1.H[7]
         smlsl       v7.4S,  v24.4H, v0.H[0]
         smlal       v8.4S,  v24.4H, v1.H[5]
         smlal       v9.4S,  v24.4H, v0.H[3]
@@ -437,22 +424,18 @@
         smlal       v7.4S,  v29.4H, v0.H[0]
         smlsl       v8.4S,  v29.4H, v0.H[4]
         smlal       v9.4S,  v29.4H, v1.H[1]
-        sshll       v5.4S,  v30.4H, #2
-        add         v8.4S,  v8.4S,  v5.4S
         smlal       v6.4S,  v30.4H, v1.H[1]
         smlsl       v7.4S,  v30.4H, v1.H[4]
+        smlal       v8.4S,  v30.4H, v1.H[7]
         smlal       v9.4S,  v30.4H, v1.H[5]
         smlal       v6.4S,  v31.4H, v0.H[7]
         smlsl       v7.4S,  v31.4H, v0.H[6]
         smlal       v8.4S,  v31.4H, v0.H[5]
         smlsl       v9.4S,  v31.4H, v0.H[4] 
-        st1         {v6.2D - v9.2D}, [x6], #64
-
-        sshll       v6.4S,  v16.4H, #2
-        add         v5.4S,  v5.4S,  v6.4S
         smull       v2.4S,  v16.4H, v1.H[4]
         smull       v3.4S,  v16.4H, v1.H[5]
         smull       v4.4S,  v16.4H, v1.H[6]
+        smull       v5.4S,  v16.4H, v1.H[7]
         smlsl       v2.4S,  v17.4H, v0.H[5]
         smlsl       v3.4S,  v17.4H, v1.H[0]
         smlsl       v4.4S,  v17.4H, v1.H[3]
@@ -465,8 +448,7 @@
         smlsl       v3.4S,  v19.4H, v0.H[0]
         smlsl       v4.4S,  v19.4H, v0.H[5]
         smlsl       v5.4S,  v19.4H, v1.H[4]
-        sshll       v6.4S,  v20.4H, #2
-        add         v2.4S,  v2.4S,  v6.4S
+        smlal       v2.4S,  v20.4H, v1.H[7]
         smlal       v3.4S,  v20.4H, v0.H[6]
         smlal       v4.4S,  v20.4H, v0.H[2]
         smlal       v5.4S,  v20.4H, v1.H[3]
@@ -475,8 +457,7 @@
         smlsl       v4.4S,  v21.4H, v0.H[0]
         smlsl       v5.4S,  v21.4H, v1.H[2]
         smlsl       v2.4S,  v22.4H, v0.H[2]
-        sshll       v6.4S,  v22.4H, #2
-        sub         v3.4S,  v3.4S,  v6.4S
+        smlsl       v3.4S,  v22.4H, v1.H[7]
         smlal       v4.4S,  v22.4H, v0.H[3]
         smlal       v5.4S,  v22.4H, v1.H[1]
         smlal       v2.4S,  v23.4H, v0.H[4]
@@ -491,10 +472,9 @@
         smlal       v3.4S,  v25.4H, v0.H[0]
         smlsl       v4.4S,  v25.4H, v1.H[4]
         smlsl       v5.4S,  v25.4H, v0.H[6]
-        sshll       v6.4S,  v26.4H, #2
-        add         v4.4S,  v4.4S,  v6.4S
         smlal       v2.4S,  v26.4H, v0.H[6]
         smlsl       v3.4S,  v26.4H, v0.H[4]
+        smlal       v4.4S,  v26.4H, v1.H[7]
         smlal       v5.4S,  v26.4H, v0.H[5]
         smlsl       v2.4S,  v27.4H, v0.H[0]
         smlal       v3.4S,  v27.4H, v1.H[1]
@@ -514,9 +494,9 @@
         smlal       v5.4S,  v30.4H, v0.H[0]
         smlal       v2.4S,  v31.4H, v0.H[3]
         smlsl       v3.4S,  v31.4H, v0.H[2]
-        smull       v6.4S,  v31.4H, v0.H[0]
-        add         v4.4S,  v4.4S,  v6.4S 
-        sub         v5.4S,  v5.4S,  v6.4S
+        smlal       v4.4S,  v31.4H, v0.H[0]
+        smlsl       v5.4S,  v31.4H, v0.H[0]
+        st1         {v6.2D - v9.2D}, [x6], #64
         st1         {v2.2D - v5.2D}, [x6], #64
 .endm
 
@@ -712,31 +692,12 @@ function ff_hevc_transform_16x16_neon_8, export=1
         transpose_16b_4x4   v17, v21, v25, v29, v11, v12, v13, v14
         transpose_16b_4x4   v18, v22, v26, v30, v11, v12, v13, v14
         transpose_16b_4x4   v19, v23, v27, v31, v11, v12, v13, v14
-
-        mov         v11.16B, v24.16B
-        mov         v24.16B, v20.16B
-        mov         v20.16B, v18.16B
-        mov         v18.16B, v17.16B
-        mov         v17.16B, v11.16B                    //swap 17 18 20 24 -> 24 17 18 20
-        mov         v11.16B, v25.16B
-        mov         v25.16B, v28.16B
-        mov         v28.16B, v22.16B
-        mov         v22.16B, v19.16B
-        mov         v19.16B, v11.16B                    //swap 19 22 25 28 -> 25 19 28 22
-        mov         v11.16B, v23.16B
-        mov         v23.16B, v27.16B
-        mov         v27.16B, v29.16B
-        mov         v29.16B, v30.16B
-        mov         v30.16B, v11.16B                    //swap 23 27 29 30 -> 27 29 30 23
-        mov         v11.16B, v21.16B
-        mov         v21.16B, v26.16B
-        mov         v26.16B, v11.16B                    //swap 21 <-> 26
-        tr16_begin  v24, v25, v26, v27, v28, v29, v30, v31
+        tr16_begin  v20, v28, v21, v29, v22, v30, v23, v31
         sub         x10, x10, #128
         st1         {v2.2D - v5.2D}, [x10], #64
         st1         {v6.2D - v9.2D}, [x10], #64
-        tr8_begin   v17, v19, v21, v23
-        tr4         v16, v18, v20, v22
+        tr8_begin   v24, v25, v26, v27
+        tr4         v16, v17, v18, v19
         tr8_end_0
         sub         x10, x10, #128
         ld1         {v0.2D - v3.2D}, [x10], #64
@@ -777,14 +738,14 @@ function ff_hevc_transform_16x16_neon_8, export=1
         transpose_16b_4x4 v4, v5, v6, v7, v20, v21, v22, v23
         transpose_16b_4x4 v8, v9, v10, v11, v20, v21, v22, v23
         transpose_16b_4x4 v12, v13, v14, v15, v20, v21, v22, v23
-        zip1        v20.2D, v0.2D, v4.2D                    //vswp      d9, d12
-        zip1        v21.2D, v8.2D, v12.2D                   //vswp      d3, d6
-        zip1        v22.2D, v1.2D, v5.2D                    //vswp      d3, d9
-        zip1        v23.2D, v9.2D, v13.2D                   //vswp      d6, d12
-        zip1        v24.2D, v8.2D, v6.2D                    //vswp      d1, d4
-        zip1        v25.2D, v10.2D, v14.2D                  //vswp      d11, d14
-        zip1        v26.2D, v3.2D, v7.2D                    //vswp      d2, d8
-        zip1        v27.2D, v11.2D, v15.2D                  //vswp      d7, d13
+        trn1        v20.2D, v0.2D, v4.2D                    //vswp      d9, d12
+        trn1        v21.2D, v8.2D, v12.2D                   //vswp      d3, d6
+        trn1        v22.2D, v1.2D, v5.2D                    //vswp      d3, d9
+        trn1        v23.2D, v9.2D, v13.2D                   //vswp      d6, d12
+        trn1        v24.2D, v2.2D, v6.2D                    //vswp      d1, d4
+        trn1        v25.2D, v10.2D, v14.2D                  //vswp      d11, d14
+        trn1        v26.2D, v3.2D, v7.2D                    //vswp      d2, d8
+        trn1        v27.2D, v11.2D, v15.2D                  //vswp      d7, d13
         st1         {v20.2D - v23.2D}, [x0], #64
         st1         {v24.2D - v27.2D}, [x0], #64
         subs        x4, x4, #1
