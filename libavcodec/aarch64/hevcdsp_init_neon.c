@@ -251,25 +251,6 @@ av_cold void ff_hevcdsp_init_neon(HEVCDSPContext *c, const int bit_depth)
             c->put_hevc_qpel_bi_w[x][1][0]  = ff_hevc_put_qpel_bi_weight_neon_wrapper;
             c->put_hevc_qpel_bi_w[x][0][1]  = ff_hevc_put_qpel_bi_weight_neon_wrapper;
             c->put_hevc_qpel_bi_w[x][1][1]  = ff_hevc_put_qpel_bi_weight_neon_wrapper;
-            c->put_hevc_epel[x][0][0]       = ff_hevc_put_epel_pixel_neon_8;
-            c->put_hevc_epel[x][1][0]       = ff_hevc_put_epel_v_neon_8;
-            c->put_hevc_epel[x][0][1]       = ff_hevc_put_epel_h_neon_8;
-            c->put_hevc_epel[x][1][1]       = ff_hevc_put_epel_hv_neon_8;
-            c->put_hevc_epel_uni[x][1][0]   = ff_hevc_put_epel_uni_v_neon_8;
-            c->put_hevc_epel_uni[x][0][1]   = ff_hevc_put_epel_uni_h_neon_8;
-            c->put_hevc_epel_uni[x][1][1]   = ff_hevc_put_epel_uni_hv_neon_8;
-            c->put_hevc_epel_bi[x][0][0]    = ff_hevc_put_epel_bi_pixel_neon_8;
-            c->put_hevc_epel_bi[x][1][0]    = ff_hevc_put_epel_bi_v_neon_8;
-            c->put_hevc_epel_bi[x][0][1]    = ff_hevc_put_epel_bi_h_neon_8;
-            c->put_hevc_epel_bi[x][1][1]    = ff_hevc_put_epel_bi_hv_neon_8;
-            c->put_hevc_epel_uni_w[x][0][0] = ff_hevc_put_epel_uni_w_neon_8;
-            c->put_hevc_epel_uni_w[x][1][0] = ff_hevc_put_epel_uni_w_v_neon_8;
-            c->put_hevc_epel_uni_w[x][0][1] = ff_hevc_put_epel_uni_w_h_neon_8;
-            c->put_hevc_epel_uni_w[x][1][1] = ff_hevc_put_epel_uni_w_hv_neon_8;
-            c->put_hevc_epel_bi_w[x][0][0]  = ff_hevc_put_epel_bi_w_neon_8;
-            c->put_hevc_epel_bi_w[x][1][0]  = ff_hevc_put_epel_bi_w_v_neon_8;
-            c->put_hevc_epel_bi_w[x][0][1]  = ff_hevc_put_epel_bi_w_h_neon_8;
-            c->put_hevc_epel_bi_w[x][1][1]  = ff_hevc_put_epel_bi_w_hv_neon_8;
         }       
         c->put_hevc_qpel[0][0][0]  = ff_hevc_put_pixels_w2_neon_8;
         c->put_hevc_qpel[1][0][0]  = ff_hevc_put_pixels_w4_neon_8;
