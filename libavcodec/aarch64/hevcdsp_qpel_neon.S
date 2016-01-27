@@ -821,7 +821,7 @@ endfunc
         smull2      v15.4S, v1.8H, v7.8H
         smull       v12.4S, v2.4H, v4.4H
         smull2      v13.4S, v2.8H, v4.8H
-        add         v14.4S, v14.4S, v12.4
+        add         v14.4S, v14.4S, v12.4S
         add         v15.4S, v15.4S, v13.4S
         add         v14.4S, v14.4S, v0.4S
         add         v15.4S, v15.4S, v0.4S
